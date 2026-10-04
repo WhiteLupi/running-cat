@@ -8,8 +8,10 @@ The Claude Code spinner had one job: spin. It did that job. Nobody loved it.
 **running-cat** replaces it with a kitten who actually cares about your work:
 
 - 🐭 **Claude is answering** → the kitten chases a mouse across your terminal. It will never catch it. Neither will you catch that bug, but at least you have company.
-- 💭 **Claude is thinking** → the kitten loafs with a thought bubble (`∘ ?`). Deep thoughts. Possibly about tuna.
-- 💻 **A tool is running** → the kitten types on a tiny laptop, and the line below tells you exactly which tool it's using (`Bash · Running…`). Now you see the moment Claude reaches for something it shouldn't, and hit Esc before it does.
+- ❓ **Claude is thinking** → the kitten loafs while question marks pop up over its head, one, two, three. Deep thoughts. Possibly about tuna.
+- 💻 **A tool is running** → the kitten runs a bit, then sits down at a tiny laptop and types, and back again. The line below tells you exactly which tool it's using (`Bash · Running…`, `Slack › send_message · …`). Now you see the moment Claude reaches for something it shouldn't, and hit Esc before it does.
+- 🍞 **Waiting for the reply** → the kitten loafs and flicks its tail.
+- 🐾 **New spinner word** → the kitten hops.
 - 😺 **It blinks.** Every 3.5 seconds. You're welcome.
 
 ## Scientifically proven benefits
