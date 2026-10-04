@@ -1,0 +1,8 @@
+{
+  "name": "running-cat",
+  "version": "0.3.0",
+  "description": "A kitten runs, thinks and types in place of the spinner, and names the tool in use",
+  "author": { "name": "Katarzyna Walter" },
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}

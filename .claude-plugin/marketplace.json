@@ -1,0 +1,14 @@
+{
+  "name": "running-cat",
+  "owner": {
+    "name": "Katarzyna Walter"
+  },
+  "description": "Claude Code mods by Katarzyna Walter",
+  "plugins": [
+    {
+      "name": "running-cat",
+      "source": "./",
+      "description": "A kitten runs, thinks and types in place of the spinner, and names the tool in use"
+    }
+  ]
+}
