@@ -1,6 +1,6 @@
 # running-cat 🐈‍⬛
 
-<img src="assets/kitten-mouse.png" alt="running-cat: a pixel kitten chasing a mouse" width="294"> <img src="assets/kitten-laptop.png" alt="running-cat: a pixel kitten typing on a tiny laptop" width="281">
+<img src="assets/kitten.svg" alt="running-cat: a pixel kitten chases a mouse, thinks, types on a tiny laptop, then loafs and flicks its tail" width="544">
 
 > *"I used to stare at a spinner. Now I stare at a cat. My life has meaning."*
 > — a developer, probably

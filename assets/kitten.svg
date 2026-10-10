@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="544" height="128" viewBox="0 0 544 128" role="img" aria-label="running-cat: a pixel kitten chases a mouse, thinks, then types on a tiny laptop">
+<style>
+.k{opacity:0;animation:k 13580ms step-end infinite}
+@keyframes k{0%{opacity:1}1.0309%{opacity:0}100%{opacity:0}}
+text{font:bold 15px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#fff;text-anchor:middle}
+@media (prefers-reduced-motion:reduce){.k{animation:none}.still{opacity:1}}
+</style>
+<defs>
+<pattern id="d" width="2" height="2" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#fff"/><rect width="1" height="1" fill="#262b36"/></pattern>
+<pattern id="s" width="2" height="2" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="#fff"/><rect x="1" y="1" width="1" height="1" fill="#fff"/></pattern>
+<clipPath id="c"><rect x="16" y="16" width="512" height="96"/></clipPath>
+<g id="f0"><path d="M76 24h12v8h-12zM104 24h12v8h-12zM76 32h40v8h-40zM8 40h8v8h-8zM76 40h8v8h-8zM88 40h16v8h-16zM108 40h8v8h-8zM12 48h8v8h-8zM36 48h80v8h-80zM20 56h92v8h-92zM32 64h80v8h-80zM32 72h80v8h-80zM32 80h8v8h-8zM48 80h8v8h-8zM88 80h8v8h-8zM104 80h8v8h-8zM200 80h20v8h-20zM28 88h8v8h-8zM52 88h8v8h-8zM84 88h8v8h-8zM108 88h8v8h-8zM196 88h32v8h-32z"/><text x="172.0" y="92">~</text><text x="180.0" y="92">~</text><text x="188.0" y="92">~</text></g>
+<g id="f1"><path d="M76 24h12v8h-12zM104 24h12v8h-12zM76 32h40v8h-40zM76 40h8v8h-8zM88 40h16v8h-16zM108 40h8v8h-8zM0 48h24v8h-24zM36 48h80v8h-80zM24 56h88v8h-88zM32 64h80v8h-80zM32 72h80v8h-80zM36 80h8v8h-8zM52 80h8v8h-8zM92 80h8v8h-8zM108 80h8v8h-8zM200 80h20v8h-20zM36 88h8v8h-8zM52 88h8v8h-8zM92 88h8v8h-8zM108 88h8v8h-8zM196 88h32v8h-32z"/><text x="172.0" y="92">-</text><text x="180.0" y="92">~</text><text x="188.0" y="92">~</text></g>
+<g id="f2"><path d="M76 24h12v8h-12zM104 24h12v8h-12zM76 32h40v8h-40zM8 40h8v8h-8zM76 40h40v8h-40zM12 48h8v8h-8zM36 48h80v8h-80zM20 56h92v8h-92zM32 64h80v8h-80zM32 72h80v8h-80zM32 80h8v8h-8zM48 80h8v8h-8zM88 80h8v8h-8zM104 80h8v8h-8zM200 80h20v8h-20zM28 88h8v8h-8zM52 88h8v8h-8zM84 88h8v8h-8zM108 88h8v8h-8zM196 88h32v8h-32z"/><text x="172.0" y="92">~</text><text x="180.0" y="92">~</text><text x="188.0" y="92">~</text></g>
+<g id="f3"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h8v8h-8zM104 56h16v8h-16zM124 56h8v8h-8zM12 64h120v8h-120zM12 72h120v8h-120zM0 80h132v8h-132z"/><text x="84.0" y="28">?</text></g>
+<g id="f4"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h8v8h-8zM104 56h16v8h-16zM124 56h8v8h-8zM12 64h120v8h-120zM12 72h120v8h-120zM0 80h132v8h-132z"/><text x="116.0" y="12">?</text><text x="84.0" y="28">?</text></g>
+<g id="f5"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h8v8h-8zM104 56h16v8h-16zM124 56h8v8h-8zM12 64h120v8h-120zM12 72h120v8h-120zM0 80h132v8h-132z"/><text x="116.0" y="12">?</text><text x="84.0" y="28">?</text><text x="148.0" y="28">?</text></g>
+<g id="f6"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h8v8h-8zM104 56h16v8h-16zM124 56h8v8h-8zM12 64h120v8h-120zM12 72h120v8h-120zM0 80h132v8h-132z"/></g>
+<g id="f7"><path d="M76 24h12v8h-12zM104 24h12v8h-12zM76 32h40v8h-40zM8 40h8v8h-8zM76 40h8v8h-8zM88 40h16v8h-16zM108 40h8v8h-8zM12 48h8v8h-8zM36 48h80v8h-80zM20 56h92v8h-92zM32 64h80v8h-80zM32 72h80v8h-80zM32 80h8v8h-8zM48 80h8v8h-8zM88 80h8v8h-8zM104 80h8v8h-8zM28 88h8v8h-8zM52 88h8v8h-8zM84 88h8v8h-8zM108 88h8v8h-8z"/></g>
+<g id="f8"><path d="M76 24h12v8h-12zM104 24h12v8h-12zM76 32h40v8h-40zM76 40h8v8h-8zM88 40h16v8h-16zM108 40h8v8h-8zM0 48h24v8h-24zM36 48h80v8h-80zM24 56h88v8h-88zM32 64h80v8h-80zM32 72h80v8h-80zM36 80h8v8h-8zM52 80h8v8h-8zM92 80h8v8h-8zM108 80h8v8h-8zM36 88h8v8h-8zM52 88h8v8h-8zM92 88h8v8h-8zM108 88h8v8h-8z"/></g>
+<g id="f9"><path d="M76 24h12v8h-12zM104 24h12v8h-12zM76 32h40v8h-40zM8 40h8v8h-8zM76 40h40v8h-40zM12 48h8v8h-8zM36 48h80v8h-80zM20 56h92v8h-92zM32 64h80v8h-80zM32 72h80v8h-80zM32 80h8v8h-8zM48 80h8v8h-8zM88 80h8v8h-8zM104 80h8v8h-8zM28 88h8v8h-8zM52 88h8v8h-8zM84 88h8v8h-8zM108 88h8v8h-8z"/></g>
+<g id="f10"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h8v8h-8zM104 56h16v8h-16zM124 56h8v8h-8zM180 56h56v8h-56zM12 64h120v8h-120zM180 64h4v8h-4zM232 64h4v8h-4zM12 72h120v8h-120zM180 72h4v8h-4zM232 72h4v8h-4zM0 80h168v8h-168zM180 80h56v8h-56zM144 88h100v8h-100z"/><rect x="184" y="64" width="8" height="16" fill="url(#d)"/><rect x="192" y="64" width="8" height="16" fill="url(#s)"/><rect x="200" y="64" width="8" height="16" fill="url(#d)"/><rect x="208" y="64" width="8" height="16" fill="url(#d)"/><rect x="216" y="64" width="8" height="16" fill="url(#s)"/><rect x="224" y="64" width="8" height="16" fill="url(#d)"/></g>
+<g id="f11"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h8v8h-8zM104 56h16v8h-16zM124 56h8v8h-8zM180 56h56v8h-56zM12 64h120v8h-120zM180 64h4v8h-4zM232 64h4v8h-4zM12 72h156v8h-156zM180 72h4v8h-4zM232 72h4v8h-4zM0 80h132v8h-132zM180 80h56v8h-56zM144 88h100v8h-100z"/><rect x="184" y="64" width="8" height="16" fill="url(#d)"/><rect x="192" y="64" width="8" height="16" fill="url(#d)"/><rect x="200" y="64" width="8" height="16" fill="url(#s)"/><rect x="208" y="64" width="8" height="16" fill="url(#d)"/><rect x="216" y="64" width="8" height="16" fill="url(#d)"/><rect x="224" y="64" width="8" height="16" fill="url(#s)"/></g>
+<g id="f12"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h8v8h-8zM104 56h16v8h-16zM124 56h8v8h-8zM12 64h120v8h-120zM12 72h120v8h-120zM0 80h132v8h-132z"/></g>
+<g id="f13"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h40v8h-40zM12 64h120v8h-120zM12 72h120v8h-120zM0 80h132v8h-132z"/></g>
+<g id="f14"><path d="M92 40h12v8h-12zM120 40h12v8h-12zM92 48h40v8h-40zM20 56h68v8h-68zM92 56h8v8h-8zM104 56h16v8h-16zM124 56h8v8h-8zM12 64h120v8h-120zM4 72h4v8h-4zM12 72h120v8h-120zM4 80h128v8h-128z"/></g>
+</defs>
+<rect width="544" height="128" rx="10" fill="#262b36"/>
+<g clip-path="url(#c)" fill="#fff"><g transform="translate(16 16)">
+<use class="k" href="#f0" xlink:href="#f0" x="-96" style="animation-delay:-13580ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="-88" style="animation-delay:-13440ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="-80" style="animation-delay:-13300ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="-72" style="animation-delay:-13160ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="-64" style="animation-delay:-13020ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="-56" style="animation-delay:-12880ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="-48" style="animation-delay:-12740ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="-40" style="animation-delay:-12600ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="-32" style="animation-delay:-12460ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="-24" style="animation-delay:-12320ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="-16" style="animation-delay:-12180ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="-8" style="animation-delay:-12040ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="0" style="animation-delay:-11900ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="8" style="animation-delay:-11760ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="16" style="animation-delay:-11620ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="24" style="animation-delay:-11480ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="32" style="animation-delay:-11340ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="40" style="animation-delay:-11200ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="48" style="animation-delay:-11060ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="56" style="animation-delay:-10920ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="64" style="animation-delay:-10780ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="72" style="animation-delay:-10640ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="80" style="animation-delay:-10500ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="88" style="animation-delay:-10360ms"/>
+<use class="k" href="#f2" xlink:href="#f2" x="96" style="animation-delay:-10220ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="104" style="animation-delay:-10080ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="112" style="animation-delay:-9940ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="120" style="animation-delay:-9800ms"/>
+<use class="k" href="#f0" xlink:href="#f0" x="128" style="animation-delay:-9660ms"/>
+<use class="k" href="#f1" xlink:href="#f1" x="136" style="animation-delay:-9520ms"/>
+<use class="k" href="#f3" xlink:href="#f3" x="144" style="animation-delay:-9380ms"/>
+<use class="k" href="#f3" xlink:href="#f3" x="144" style="animation-delay:-9240ms"/>
+<use class="k" href="#f3" xlink:href="#f3" x="144" style="animation-delay:-9100ms"/>
+<use class="k" href="#f4" xlink:href="#f4" x="144" style="animation-delay:-8960ms"/>
+<use class="k" href="#f4" xlink:href="#f4" x="144" style="animation-delay:-8820ms"/>
+<use class="k" href="#f4" xlink:href="#f4" x="144" style="animation-delay:-8680ms"/>
+<use class="k" href="#f5" xlink:href="#f5" x="144" style="animation-delay:-8540ms"/>
+<use class="k" href="#f5" xlink:href="#f5" x="144" style="animation-delay:-8400ms"/>
+<use class="k" href="#f5" xlink:href="#f5" x="144" style="animation-delay:-8260ms"/>
+<use class="k" href="#f5" xlink:href="#f5" x="144" style="animation-delay:-8120ms"/>
+<use class="k" href="#f5" xlink:href="#f5" x="144" style="animation-delay:-7980ms"/>
+<use class="k" href="#f5" xlink:href="#f5" x="144" style="animation-delay:-7840ms"/>
+<use class="k" href="#f6" xlink:href="#f6" x="144" style="animation-delay:-7700ms"/>
+<use class="k" href="#f6" xlink:href="#f6" x="144" style="animation-delay:-7560ms"/>
+<use class="k" href="#f6" xlink:href="#f6" x="144" style="animation-delay:-7420ms"/>
+<use class="k" href="#f7" xlink:href="#f7" x="144" style="animation-delay:-7280ms"/>
+<use class="k" href="#f8" xlink:href="#f8" x="152" style="animation-delay:-7140ms"/>
+<use class="k" href="#f7" xlink:href="#f7" x="160" style="animation-delay:-7000ms"/>
+<use class="k" href="#f8" xlink:href="#f8" x="168" style="animation-delay:-6860ms"/>
+<use class="k" href="#f9" xlink:href="#f9" x="176" style="animation-delay:-6720ms"/>
+<use class="k" href="#f8" xlink:href="#f8" x="184" style="animation-delay:-6580ms"/>
+<use class="k" href="#f7" xlink:href="#f7" x="192" style="animation-delay:-6440ms"/>
+<use class="k" href="#f8" xlink:href="#f8" x="200" style="animation-delay:-6300ms"/>
+<use class="k" href="#f7" xlink:href="#f7" x="208" style="animation-delay:-6160ms"/>
+<use class="k" href="#f8" xlink:href="#f8" x="216" style="animation-delay:-6020ms"/>
+<use class="k" href="#f7" xlink:href="#f7" x="224" style="animation-delay:-5880ms"/>
+<use class="k" href="#f8" xlink:href="#f8" x="232" style="animation-delay:-5740ms"/>
+<use class="k still" href="#f10" xlink:href="#f10" x="240" style="animation-delay:-5600ms"/>
+<use class="k" href="#f10" xlink:href="#f10" x="240" style="animation-delay:-5460ms"/>
+<use class="k" href="#f11" xlink:href="#f11" x="240" style="animation-delay:-5320ms"/>
+<use class="k" href="#f11" xlink:href="#f11" x="240" style="animation-delay:-5180ms"/>
+<use class="k" href="#f10" xlink:href="#f10" x="240" style="animation-delay:-5040ms"/>
+<use class="k" href="#f10" xlink:href="#f10" x="240" style="animation-delay:-4900ms"/>
+<use class="k" href="#f11" xlink:href="#f11" x="240" style="animation-delay:-4760ms"/>
+<use class="k" href="#f11" xlink:href="#f11" x="240" style="animation-delay:-4620ms"/>
+<use class="k" href="#f10" xlink:href="#f10" x="240" style="animation-delay:-4480ms"/>
+<use class="k" href="#f10" xlink:href="#f10" x="240" style="animation-delay:-4340ms"/>
+<use class="k" href="#f11" xlink:href="#f11" x="240" style="animation-delay:-4200ms"/>
+<use class="k" href="#f11" xlink:href="#f11" x="240" style="animation-delay:-4060ms"/>
+<use class="k" href="#f10" xlink:href="#f10" x="240" style="animation-delay:-3920ms"/>
+<use class="k" href="#f10" xlink:href="#f10" x="240" style="animation-delay:-3780ms"/>
+<use class="k" href="#f11" xlink:href="#f11" x="240" style="animation-delay:-3640ms"/>
+<use class="k" href="#f11" xlink:href="#f11" x="240" style="animation-delay:-3500ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-3360ms"/>
+<use class="k" href="#f13" xlink:href="#f13" x="240" style="animation-delay:-3220ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-3080ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-2940ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-2800ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-2660ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-2520ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-2380ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-2240ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-2100ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-1960ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-1820ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-1680ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-1540ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-1400ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-1260ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-1120ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-980ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-840ms"/>
+<use class="k" href="#f12" xlink:href="#f12" x="240" style="animation-delay:-700ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-560ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-420ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-280ms"/>
+<use class="k" href="#f14" xlink:href="#f14" x="240" style="animation-delay:-140ms"/>
+</g></g></svg>
