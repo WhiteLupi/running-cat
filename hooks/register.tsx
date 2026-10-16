@@ -65,9 +65,8 @@ export const register: Register = on => {
     const { Box, Client, Text } = $.ui.resolve(e)
     const { mode, word, message, suffix } = e.props
     const usingTool = mode === 'tool-use' || mode === 'tool-input'
-    const name = usingTool ? await read($, tool) : null
+    const [name, animal] = await Promise.all([usingTool ? read($, tool) : null, read($, picked)])
     const label = `${name ? `${name} · ` : ''}${message ?? word}${suffix}`
-    const animal = await read($, picked)
 
     return (
       <Box flexDirection="column" width="100%">

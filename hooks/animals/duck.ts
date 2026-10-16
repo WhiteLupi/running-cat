@@ -24,6 +24,9 @@ const PALETTE = {
   n: '#D9667E', // worm's rings and head
 }
 
+// `W` and `E` are the part of the eye a lid covers.
+const closeEyes = (grid: Grid): Grid => grid.map(row => row.replace(/[WE]/g, 'Y'))
+
 // Each drawn frame keeps its twin with the eyes shut, for `blink`.
 const shut = new Map<Frame, Frame>()
 const draw = (grid: Grid, text?: Caption): Frame => {
@@ -32,14 +35,14 @@ const draw = (grid: Grid, text?: Caption): Frame => {
     return text ? caption(frame, text) : frame
   }
   const open = paint(grid)
-  shut.set(open, paint(grid.map(row => row.replace(/[WE]/g, 'Y'))))
+  shut.set(open, paint(closeEyes(grid)))
   return open
 }
 
 const HEAD = ['.....YYYY......', '....YYYWEY.....', '....YYYKKYOOOO.', '....YPYYYYRRR..']
 // The lower beak drops and the mouth shows.
 const HEAD_QUACK = [...HEAD.slice(0, 3), HEAD[3]!.replace('RRR', 'MMM')]
-const HEAD_NAP = HEAD.map(row => row.replace(/[WE]/g, 'Y'))
+const HEAD_NAP = closeEyes(HEAD)
 // The tail tips up, then lies back.
 const TAILS = [
   ['Y....YYYY......', 'YY..YYYYYY.....', 'YYYYYYYYYYY....'],

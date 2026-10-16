@@ -1,8 +1,8 @@
-import type { ClientModule } from 'claude-code'
+import type { ClientModule, RenderPropsOf } from 'claude-code'
 import { HEIGHT, animalNamed, widthOfAnimal } from './animals'
 import type { Animal, Clip, Frame, Row } from './animals/types'
 
-type Mode = 'requesting' | 'responding' | 'thinking' | 'tool-input' | 'tool-use'
+type Mode = RenderPropsOf['Spinner']['mode']
 type Mood = keyof Animal['poses']
 type Props = { mode: Mode; word: string; animal: string }
 type Memory = { mood: Mood; since: number; x: number; jumpUntil: number }
@@ -19,6 +19,9 @@ const MOOD_OF: Record<Mode, Mood> = {
   'tool-input': 'tool',
   requesting: 'wait',
 }
+
+// A mode the engine adds later runs, as the cat chased before.
+const moodOf = (mode: Mode): Mood => MOOD_OF[mode] ?? 'respond'
 
 function at<T>(list: readonly T[], i: number): T {
   return list[i % list.length] as T
@@ -53,7 +56,7 @@ const clipAt = (animal: Animal, m: Memory, tick: number): Clip => {
 const initial = (props: Props): State => ({
   tick: 0,
   props,
-  memory: { mood: MOOD_OF[props.mode] ?? 'respond', since: 0, x: 0, jumpUntil: 0 },
+  memory: { mood: moodOf(props.mode), since: 0, x: 0, jumpUntil: 0 },
 })
 
 // One frame forward: the mood follows the mode (held at least HOLD_TICKS), the animal runs.
@@ -61,13 +64,13 @@ const advance = (s: State, columns: number): State => {
   const tick = s.tick + 1
   const animal = animalNamed(s.props.animal)
   let { mood, since, x, jumpUntil } = s.memory
-  const wanted = MOOD_OF[s.props.mode] ?? 'respond'
+  const wanted = moodOf(s.props.mode)
   if (wanted !== mood && tick - since >= HOLD_TICKS) {
     mood = wanted
     since = tick
   }
   const memory = { mood, since, x, jumpUntil }
-  const moving = clipAt(animal, memory, tick).moves === true
+  const moving = clipAt(animal, memory, tick).moves ?? false
   const track = Math.max(1, columns - widthOfAnimal(animal))
   memory.x = moving ? (x + 1) % track : Math.min(x, track - 1)
   return { ...s, tick, memory }
