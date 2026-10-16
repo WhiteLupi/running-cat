@@ -1,10 +1,9 @@
 import { atom, read, update } from 'claude-code'
 import type { Register } from 'claude-code'
-import { ANIMALS, animalNamed } from './animals'
-import { HEIGHT } from './animals/types'
+import { ANIMALS, HEIGHT, animalNamed, findAnimal } from './animals'
 
 const tool = atom({ plugin: 'running-cat', key: 'tool' } as const, null)
-const pet = atom({ plugin: 'running-cat', key: 'animal' } as const, ANIMALS[0]!.name)
+const picked = atom({ plugin: 'running-cat', key: 'animal' } as const, ANIMALS[0]!.name)
 // Where the pick outlives the session.
 const SAVED = 'animal'
 
@@ -35,16 +34,18 @@ export const register: Register = on => {
         immediate: true,
       }),
     ])
-    if (typeof saved === 'string') await update($, pet, () => animalNamed(saved).name)
+    if (typeof saved === 'string') await update($, picked, () => animalNamed(saved).name)
     return next(e)
   })
 
   on('command.run', { command: COMMAND }, async ($, e) => {
     const wanted = e.args.trim().toLowerCase()
-    if (wanted === '') return { text: menu(await read($, pet)) }
-    const animal = ANIMALS.find(a => a.name === wanted)
-    if (!animal) return { text: `No ${wanted} here. Try one of:\n${menu(await read($, pet))}` }
-    await update($, pet, () => animal.name)
+    const animal = findAnimal(wanted)
+    if (!animal) {
+      const list = menu(await read($, picked))
+      return { text: wanted === '' ? list : `No ${wanted} here. Try one of:\n${list}` }
+    }
+    await update($, picked, () => animal.name)
     await $.store.set(SAVED, animal.name)
     return { text: `The ${animal.name} takes over the spinner.` }
   })
@@ -66,7 +67,7 @@ export const register: Register = on => {
     const usingTool = mode === 'tool-use' || mode === 'tool-input'
     const name = usingTool ? await read($, tool) : null
     const label = `${name ? `${name} · ` : ''}${message ?? word}${suffix}`
-    const animal = await read($, pet)
+    const animal = await read($, picked)
 
     return (
       <Box flexDirection="column" width="100%">

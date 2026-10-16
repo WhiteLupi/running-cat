@@ -1,5 +1,5 @@
 import { beside, caption, halfBlocks } from './pixels'
-import type { Grid } from './pixels'
+import type { Caption, Grid } from './pixels'
 import type { Animal, Clip, Frame } from './types'
 
 const PALETTE = {
@@ -26,10 +26,10 @@ const PALETTE = {
 
 // Each drawn frame keeps its twin with the eyes shut, for `blink`.
 const shut = new Map<Frame, Frame>()
-const draw = (grid: Grid, text?: { row: number; col: number; text: string }): Frame => {
+const draw = (grid: Grid, text?: Caption): Frame => {
   const paint = (g: Grid) => {
     const frame = halfBlocks(g, PALETTE)
-    return text ? caption(frame, text.row, text.col, text.text) : frame
+    return text ? caption(frame, text) : frame
   }
   const open = paint(grid)
   shut.set(open, paint(grid.map(row => row.replace(/[WE]/g, 'Y'))))

@@ -1,4 +1,5 @@
-import type { Animal, Frame } from './types'
+import { plain } from './pixels'
+import type { Animal } from './types'
 
 const RUN = [
   ['         ▗▄  ▄▖ ', ' ▄       ▐▛██▜▌ ', ' ▝▚▄▟█████████▘ ', '    ██████████  ', '   ▗▛ ▜▖  ▗▛ ▜▖ '],
@@ -8,7 +9,7 @@ const MOUSE = [
   ['', '', '', '', '~~~▗██▙▖'],
   ['', '', '', '', '-~~▗██▙▖'],
 ]
-const CHASE: Frame[] = RUN.map((run, step) => run.map((row, i) => row + '     ' + MOUSE[step]![i]))
+const CHASE = RUN.map((run, step) => run.map((row, i) => row + '     ' + MOUSE[step]![i]))
 const LOAF = [
   ['           ▗▄  ▄▖', '  ▗▄▄▄▄▄▄▄▄▐▛██▜▌', ' ▐██████████████▌', '▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘'],
   ['           ▗▄  ▄▖', '  ▗▄▄▄▄▄▄▄▄▐▛██▜▌', '▗▐██████████████▌', '▝▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘'],
@@ -31,13 +32,13 @@ export const cat: Animal = {
   name: 'cat',
   blurb: 'chases a mouse, ponders, types on a tiny laptop, loafs',
   poses: {
-    respond: { frames: CHASE, every: 1, moves: true },
-    think: { frames: THINK, every: 5 },
-    wait: { frames: LOAF, every: 4 },
+    respond: { frames: CHASE.map(plain), every: 1, moves: true },
+    think: { frames: THINK.map(plain), every: 5 },
+    wait: { frames: LOAF.map(plain), every: 4 },
     tool: [
-      { frames: CHASE, every: 1, moves: true },
-      { frames: LAPTOP, every: 2 },
+      { frames: CHASE.map(plain), every: 1, moves: true },
+      { frames: LAPTOP.map(plain), every: 2 },
     ],
   },
-  blink: frame => frame.map(r => (typeof r === 'string' ? r.replace('▐▛██▜▌', '▐████▌') : r)),
+  blink: frame => frame.map(row => row.map(span => ({ ...span, text: span.text.replace('▐▛██▜▌', '▐████▌') }))),
 }

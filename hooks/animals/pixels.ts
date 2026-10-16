@@ -1,5 +1,8 @@
 import type { Frame, Row, Span } from './types'
 
+// Text rows in the default color, as the cat is drawn.
+export const plain = (rows: readonly string[]): Frame => rows.map(text => [{ text }])
+
 // A pixel grid: one string per pixel row, one letter per pixel, any letter
 // missing from the palette (`.`, space) left empty.
 export type Grid = readonly string[]
@@ -43,13 +46,10 @@ export const beside = (left: Grid, right: Grid, gap = 0): Grid => {
   return l.map((row, i) => row.padEnd(width + gap, '.') + r[i])
 }
 
-export const widthOf = (row: Row) =>
-  typeof row === 'string' ? row.length : row.reduce((n, s) => n + s.text.length, 0)
+export const widthOf = (row: Row) => row.reduce((n, s) => n + s.text.length, 0)
 
-// Writes `text` into a frame's row `row`, starting at column `col`.
-export const caption = (frame: Frame, row: number, col: number, text: string): Frame =>
-  frame.map((r, i) => {
-    if (i !== row) return r
-    const spans: readonly Span[] = typeof r === 'string' ? [{ text: r }] : r
-    return [...spans, { text: ' '.repeat(Math.max(0, col - widthOf(r))) + text }]
-  })
+// Text written into a frame: on row `row`, from column `col`.
+export type Caption = { row: number; col: number; text: string }
+
+export const caption = (frame: Frame, { row, col, text }: Caption): Frame =>
+  frame.map((r, i) => (i === row ? [...r, { text: ' '.repeat(Math.max(0, col - widthOf(r))) + text }] : r))

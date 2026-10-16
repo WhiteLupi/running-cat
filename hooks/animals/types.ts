@@ -1,8 +1,8 @@
 // A run of text in one color; a color is a theme key or a raw color.
 export type Span = { text: string; color?: string; bg?: string }
 
-// One row of a frame: plain text in the default color, or colored spans.
-export type Row = string | readonly Span[]
+// One row of a frame; a span with no color is drawn in the default one.
+export type Row = readonly Span[]
 
 // Rows the stage gives an animal; every frame stands on the bottom one.
 export const HEIGHT = 6

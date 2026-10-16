@@ -1,6 +1,5 @@
 import type { ClientModule } from 'claude-code'
-import { animalNamed, widthOfAnimal } from './animals'
-import { HEIGHT } from './animals/types'
+import { HEIGHT, animalNamed, widthOfAnimal } from './animals'
 import type { Animal, Clip, Frame, Row } from './animals/types'
 
 type Mode = 'requesting' | 'responding' | 'thinking' | 'tool-input' | 'tool-use'
@@ -26,7 +25,7 @@ function at<T>(list: readonly T[], i: number): T {
 }
 
 // Every pose stands on the bottom row; spare rows go on top.
-const ground = (rows: Frame): Row[] => [...Array<string>(Math.max(0, HEIGHT - rows.length)).fill(''), ...rows]
+const ground = (rows: Frame): Row[] => [...Array<Row>(Math.max(0, HEIGHT - rows.length)).fill([]), ...rows]
 
 // A number that looks random but is the same for the same `n` on every redraw.
 const scramble = (n: number, salt: number) => ((n + salt) * 2654435761) >>> 0
@@ -94,7 +93,7 @@ const Stage: ClientModule<Props, State> = (props, surface) => {
   let frame = at(clip.frames, Math.floor(tick / clip.every))
   if (tick % 25 === 24) frame = animal.blink(frame)
   let rows = ground(frame)
-  if (tick < memory.jumpUntil) rows = [...rows.slice(1), '']
+  if (tick < memory.jumpUntil) rows = [...rows.slice(1), []]
 
   const pad = ' '.repeat(memory.x)
   const { Box, Text } = surface.elements
@@ -103,11 +102,10 @@ const Stage: ClientModule<Props, State> = (props, surface) => {
     <Box flexDirection="column">
       {rows.map((row, i) => (
         <Text key={String(i)} wrap="truncate">
-          {typeof row === 'string'
-            ? pad + row
-            : [pad, ...row.map((span, j) => (
-                <Text key={String(j)} color={span.color} backgroundColor={span.bg}>{span.text}</Text>
-              ))]}
+          {pad}
+          {row.map((span, j) => (
+            <Text key={String(j)} color={span.color} backgroundColor={span.bg}>{span.text}</Text>
+          ))}
         </Text>
       ))}
     </Box>
