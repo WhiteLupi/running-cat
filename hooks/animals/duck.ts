@@ -20,8 +20,8 @@ const PALETTE = {
   C: '#2B3A55', // screen
   c: '#7FD1FF', // code
   v: '#C7F07A', // code, another color
-  T: '#E8B66A', // crumb
-  t: '#A8692C', // crust
+  w: '#FF8FA3', // worm
+  n: '#D9667E', // worm's rings and head
 }
 
 // Each drawn frame keeps its twin with the eyes shut, for `blink`.
@@ -62,15 +62,19 @@ const NAP = [...HEAD_NAP, ...TAILS[0]!, ...BELLY_SIT]
 const STAND = [...HEAD, ...TAILS[0]!, ...BELLY, ...LEGS[1]!]
 // Head lowered, beak at the screen.
 const PECK = ['......YYYY.....', '.....YYYWEY....', '.....YYYKKYOOOO', 'Y....YPYYYYRRR.', 'YY..YYYYYY.....', 'YYYYYYYYYYY....', ...BELLY_SIT]
-// Head down to the ground, beak in the bread.
+// Head down to the ground, beak at the worm.
 const DIP = [
   '..............', '..............', '..............', '..............',
   'Y....YYYY.....', 'YY..YYYYYYY...', 'YYYYYYYYYYYY..', '.YYYYYYYYYYYY.',
   '..DYYYYYYD.YYYY', '...DDDDDD.YYWEY', '......O...YYKKYOOO', '......OO..YPYYYRRR',
 ]
 const LAPTOP = ['.GGGGGGGG.', '.GCCCCCCG.', '.GCcvccCG.', '.GCccCCCG.', '.GCcvcCCG.', '.GCCCCCCG.', '.GGGGGGGG.', 'gkgkgkgkgg', 'gggggggggg']
-const BREAD = ['.tttt.', 'tTTTTt', 'tTTTTt', 'tttttt']
-const BITTEN = ['.T..t.', '......', '.tttt.', 'tTTTTt', 'tttttt']
+// It inches along: arched, then flat; caught, its tail flips up.
+const WORM = [
+  ['...wnww...', '..wn..ww..', '.nw....wn.', 'nw......ww'],
+  ['.wwnwwnww.', 'nwwnwwnwww'],
+]
+const CAUGHT = ['.......ww', '......ww.', '.wwnwwww.', 'nwwnwww..']
 const KNIFE = [
   '....................SS', '.....YYYY..........SS.', '....YYYYYY........SS..', '....YYYKKY.......SS...',
   '....YYYYYYOOOO..SS....', '....YPYYYYRRR..BB.....', 'Y....YYYY.....BB......', 'YY..YYYYYYYYYYB.......',
@@ -99,7 +103,7 @@ const quacking: Clip = {
 
 export const duck: Animal = {
   name: 'duck',
-  blurb: 'waddles and quacks, ponders, pecks at a laptop and at bread, naps, and makes a scene',
+  blurb: 'waddles and quacks, ponders, pecks at a laptop and at a worm, naps, and makes a scene',
   poses: {
     respond: quacking,
     think: { frames: ['?', '? ?', '? ? ?', '? ? ?', ''].map(q => draw(SIT, { row: 1, col: 16, text: q })), every: 5 },
@@ -107,7 +111,10 @@ export const duck: Animal = {
     tool: [
       { frames: [draw(beside(SIT, LAPTOP)), draw(beside(PECK, LAPTOP))], every: 2 },
       walk,
-      { frames: [draw(beside(STAND, BREAD, 1)), draw(beside(DIP, BITTEN))], every: 2 },
+      {
+        frames: [...[...WORM, ...WORM].map(worm => draw(beside(STAND, worm, 1))), draw(beside(DIP, CAUGHT))],
+        every: 2,
+      },
       walk,
     ],
   },
