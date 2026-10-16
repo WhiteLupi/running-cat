@@ -24,15 +24,24 @@ The Claude Code spinner had one job: spin. It did that job. Nobody loved it.
 
 <img src="assets/duck.svg" alt="running-cat duck: a pixel rubber duck waddles and quacks, ponders, pecks at a laptop and at a worm, makes a scene, naps, and produces a knife" width="544">
 
-A yellow rubber duck, in color, takes over the spinner:
+- 🦆 **Claude is answering** → the duck waddles across your terminal, wagging its tail like it just shipped to prod on a Friday. Every few steps it quacks. Nobody asked it to. It quacks anyway. It is the only one on the team who reads the logs out loud.
+- ❓ **Claude is thinking** → the duck sits down and stares into the middle distance while question marks pile up. It is not thinking about your code. It is thinking about the bread, which it has been told it cannot have. No, seriously. Don't give bread to ducks. It kills them.
+- 💻 **A tool is running** → the duck pecks at a laptop, waddles off, hunts down a worm, waddles back. Rubber duck debugging, finally literal. It types with its face. So do you, at 2 a.m. The worm did not consent to being part of your CI pipeline.
+- 💤 **Waiting for the reply** → the duck naps. `z Z z`. It has earned this. You have not.
+- 🎭 **Now and then, for no reason at all** → the duck turns to face the camera, throws its wings in the air and screams *QUACK!* Other times it quietly produces a knife and meditates on it. We don't know where the knife came from. We don't know where it goes. The duck does not explain itself, and neither will we.
+- 😑 **It blinks.** Slowly. It has seen your vibe-code
 
-- 🦆 **Claude is answering** → the duck waddles across, wagging its tail. Every few steps it quacks.
-- ❓ **Claude is thinking** → it sits, toes out, while question marks pile up beside it.
-- 💻 **A tool is running** → it pecks at a laptop, waddles off, hunts a worm, waddles back. Rubber duck debugging, finally literal.
-- 💤 **Waiting for the reply** → it naps. `z Z z`.
-- 🎭 **Now and then, for no reason** → it turns to the camera, wings up, *QUACK!* Or it quietly produces a knife.
+`/running-cat` lists the animals. `/running-cat cat` brings the kitten back, if you can live with the duck knowing. The pick sticks across sessions. Ducks remember.
 
-`/running-cat` lists the animals, `/running-cat cat` brings the kitten back. The pick sticks across sessions. Prefer a GIF? [Here you go](assets/duck.gif).
+### Frequently asked questions
+
+**Is the duck safe?** The duck is safe. The duck is always safe. Please stop asking about the knife.
+
+**Can I give it bread?** No.
+
+**Does it float?** It's a rubber duck. Of course it floats. It just chooses not to.
+
+**Where did the worm go?** Don't.
 
 ## Scientifically proven benefits
 
