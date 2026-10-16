@@ -16,6 +16,14 @@ The Claude Code spinner had one job: spin. It did that job. Nobody loved it.
 - 🐾 **New spinner word** → the kitten hops.
 - 😺 **It blinks.** Every 3.5 seconds. You're welcome.
 
+## Not a cat person?
+
+```
+/running-cat duck
+```
+
+🦆 The duck is a rubber one, in color. It waddles and wags its tail while Claude answers (with the odd quack), sits under a growing pile of question marks while Claude thinks, takes turns pecking at a laptop and at a slice of bread while a tool runs, and naps while you wait. Every now and then it makes a scene: turns to the camera, wings up, QUACK!, or quietly produces a knife. `/running-cat` lists the animals, `/running-cat cat` brings the kitten back. The pick sticks across sessions.
+
 ## Scientifically proven benefits
 
 | Metric | Before | After |
