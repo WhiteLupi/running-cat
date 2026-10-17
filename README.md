@@ -60,7 +60,7 @@ Teams that installed running-cat report a **340% increase** in "wait, come look 
 
 ## Install
 
-Needs a Claude Code build with plugin hooks modules (2.1.289 or newer). Works in the terminal.
+Needs a Claude Code build with plugin hooks modules (2.1.289 or newer). Works in the terminal; the desktop app keeps its own spinner.
 
 ```
 /plugin marketplace add whiteLupi/running-cat

@@ -1,6 +1,6 @@
 import type { Frame, Row, Span } from './types'
 
-// Text rows in the default color, as the cat is drawn.
+// The cat is plain text, drawn in the terminal's own color.
 export const plain = (rows: readonly string[]): Frame => rows.map(text => [{ text }])
 
 // A pixel grid: one string per pixel row, one letter per pixel, any letter
