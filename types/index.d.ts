@@ -1,7 +1,5 @@
-export type ToolName = string
-
 declare module 'claude-code' {
   interface PluginState {
-    'running-cat': { tool: ToolName | null; animal: string }
+    'running-cat': { tool: string | null; animal: string }
   }
 }

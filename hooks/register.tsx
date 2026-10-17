@@ -4,7 +4,7 @@ import { ANIMALS, HEIGHT, animalNamed, findAnimal } from './animals'
 
 const tool = atom({ plugin: 'running-cat', key: 'tool' } as const, null)
 const picked = atom({ plugin: 'running-cat', key: 'animal' } as const, ANIMALS[0]!.name)
-// Where the pick outlives the session.
+// The store key that remembers your pick between sessions.
 const SAVED = 'animal'
 
 const COMMAND = 'running-cat'
@@ -58,9 +58,8 @@ export const register: Register = on => {
   })
 
   on('ui.render', { component: 'Spinner' }, async ($, e, next) => {
-    if (e.surface !== 'terminal' && e.surface !== 'desktop') {
-      return next(e)
-    }
+    // The desktop gives the spinner one line; a taller animal gets cut to a stripe.
+    if (e.surface !== 'terminal') return next(e)
 
     const { Box, Client, Text } = $.ui.resolve(e)
     const { mode, word, message, suffix } = e.props

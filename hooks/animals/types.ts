@@ -26,7 +26,7 @@ export type Animal = {
     // Phases a tool call cycles through, each held a few seconds.
     tool: readonly Clip[]
   }
-  // The same frame with the eyes shut; it gets the frame as its clip holds it.
+  // Takes a frame straight from a clip and hands back the same frame, eyes shut.
   blink: (frame: Frame) => Frame
   // Poses that now and then cut into any other, one picked per period.
   drama?: { clips: readonly Clip[]; ticks: number; period: number }

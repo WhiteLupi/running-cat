@@ -9,7 +9,6 @@ export { HEIGHT } from './types'
 // beside these and a line here.
 export const ANIMALS: readonly Animal[] = [cat, duck]
 
-// Every clip the animal can play.
 export const clipsOf = (animal: Animal): Clip[] => {
   const { respond, think, wait, tool } = animal.poses
   return [respond, think, wait, ...tool, ...(animal.drama?.clips ?? [])]

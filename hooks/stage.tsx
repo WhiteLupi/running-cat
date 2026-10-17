@@ -11,6 +11,7 @@ type State = { tick: number; props: Props; memory: Memory }
 const FRAME_MS = 140
 const HOLD_TICKS = Math.round(3000 / FRAME_MS)
 const JUMP_TICKS = 4
+const BLINK_TICKS = Math.round(3500 / FRAME_MS)
 
 const MOOD_OF: Record<Mode, Mood> = {
   thinking: 'think',
@@ -20,7 +21,7 @@ const MOOD_OF: Record<Mode, Mood> = {
   requesting: 'wait',
 }
 
-// A mode the engine adds later runs, as the cat chased before.
+// A spinner mode we don't know yet? The animal just runs, same as when answering.
 const moodOf = (mode: Mode): Mood => MOOD_OF[mode] ?? 'respond'
 
 function at<T>(list: readonly T[], i: number): T {
@@ -63,17 +64,17 @@ const initial = (props: Props): State => ({
 const advance = (s: State, columns: number): State => {
   const tick = s.tick + 1
   const animal = animalNamed(s.props.animal)
-  let { mood, since, x, jumpUntil } = s.memory
+  const { x, jumpUntil } = s.memory
+  let { mood, since } = s.memory
   const wanted = moodOf(s.props.mode)
   if (wanted !== mood && tick - since >= HOLD_TICKS) {
     mood = wanted
     since = tick
   }
-  const memory = { mood, since, x, jumpUntil }
-  const moving = clipAt(animal, memory, tick).moves ?? false
+  const moving = clipAt(animal, { mood, since, x, jumpUntil }, tick).moves ?? false
   const track = Math.max(1, columns - widthOfAnimal(animal))
-  memory.x = moving ? (x + 1) % track : Math.min(x, track - 1)
-  return { ...s, tick, memory }
+  const nextX = moving ? (x + 1) % track : Math.min(x, track - 1)
+  return { ...s, tick, memory: { mood, since, x: nextX, jumpUntil } }
 }
 
 const Stage: ClientModule<Props, State> = (props, surface) => {
@@ -94,7 +95,7 @@ const Stage: ClientModule<Props, State> = (props, surface) => {
   const animal = animalNamed(s.props.animal)
   const clip = clipAt(animal, memory, tick)
   let frame = at(clip.frames, Math.floor(tick / clip.every))
-  if (tick % 25 === 24) frame = animal.blink(frame)
+  if (tick % BLINK_TICKS === BLINK_TICKS - 1) frame = animal.blink(frame)
   let rows = ground(frame)
   if (tick < memory.jumpUntil) rows = [...rows.slice(1), []]
 
