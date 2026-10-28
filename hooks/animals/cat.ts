@@ -1,4 +1,5 @@
 import { plain } from './pixels'
+import { WALK } from './types'
 import type { Animal } from './types'
 
 const RUN = [
@@ -32,11 +33,11 @@ export const cat: Animal = {
   name: 'cat',
   blurb: 'chases a mouse, ponders, types on a tiny laptop, loafs',
   poses: {
-    respond: { frames: CHASE.map(plain), every: 1, moves: true },
+    respond: { frames: CHASE.map(plain), every: 1, steps: WALK },
     think: { frames: THINK.map(plain), every: 5 },
     wait: { frames: LOAF.map(plain), every: 4 },
     tool: [
-      { frames: CHASE.map(plain), every: 1, moves: true },
+      { frames: CHASE.map(plain), every: 1, steps: WALK },
       { frames: LAPTOP.map(plain), every: 2 },
     ],
   },

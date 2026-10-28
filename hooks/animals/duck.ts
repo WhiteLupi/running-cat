@@ -1,6 +1,8 @@
-import { beside, caption, halfBlocks } from './pixels'
-import type { Caption, Grid } from './pixels'
-import type { Animal, Clip, Frame } from './types'
+import { beside, drawer } from './pixels'
+import type { Grid } from './pixels'
+import { LAPTOP, LAPTOP_COLORS, QUESTIONS } from './props'
+import { WALK } from './types'
+import type { Animal, Clip } from './types'
 
 const PALETTE = {
   Y: '#FFD43B', // feathers
@@ -14,12 +16,7 @@ const PALETTE = {
   P: '#FF9AA2', // blush
   S: '#D7DCEB', // blade
   B: '#7A4320', // handle
-  G: '#9AA0AC', // laptop lid
-  g: '#6B717E', // laptop base
-  k: '#4A4F5A', // keys
-  C: '#2B3A55', // screen
-  c: '#7FD1FF', // code
-  v: '#C7F07A', // code, another color
+  ...LAPTOP_COLORS,
   w: '#FF8FA3', // worm
   n: '#D9667E', // worm's rings and head
 }
@@ -27,17 +24,7 @@ const PALETTE = {
 // `W` and `E` are the part of the eye a lid covers.
 const closeEyes = (grid: Grid): Grid => grid.map(row => row.replace(/[WE]/g, 'Y'))
 
-// Each drawn frame keeps its twin with the eyes shut, for `blink`.
-const shut = new Map<Frame, Frame>()
-const draw = (grid: Grid, text?: Caption): Frame => {
-  const paint = (g: Grid) => {
-    const frame = halfBlocks(g, PALETTE)
-    return text ? caption(frame, text) : frame
-  }
-  const open = paint(grid)
-  shut.set(open, paint(closeEyes(grid)))
-  return open
-}
+const { draw, blink } = drawer(PALETTE, closeEyes)
 
 const HEAD = ['.....YYYY......', '....YYYWEY.....', '....YYYKKYOOOO.', '....YPYYYYRRR..']
 // The lower beak drops and the mouth shows.
@@ -71,7 +58,6 @@ const DIP = [
   'Y....YYYY.....', 'YY..YYYYYYY...', 'YYYYYYYYYYYY..', '.YYYYYYYYYYYY.',
   '..DYYYYYYD.YYYY', '...DDDDDD.YYWEY', '......O...YYKKYOOO', '......OO..YPYYYRRR',
 ]
-const LAPTOP = ['.GGGGGGGG.', '.GCCCCCCG.', '.GCcvccCG.', '.GCccCCCG.', '.GCcvcCCG.', '.GCCCCCCG.', '.GGGGGGGG.', 'gkgkgkgkgg', 'gggggggggg']
 // It inches along: arched, then flat; caught, its tail flips up.
 const WORM = [
   ['...wnww...', '..wn..ww..', '.nw....wn.', 'nw......ww'],
@@ -94,7 +80,7 @@ const TA_DA = [
 const walk: Clip = {
   frames: Array.from({ length: 16 }, (_, i) => draw([...HEAD, ...TAILS[i % 2]!, ...BELLY, ...LEGS[i % 4]!])),
   every: 2,
-  moves: true,
+  steps: WALK,
 }
 // The same, the beak opening on the last two steps.
 const quacking: Clip = {
@@ -109,7 +95,7 @@ export const duck: Animal = {
   blurb: 'waddles and quacks, ponders, pecks at a laptop and at a worm, naps, and makes a scene',
   poses: {
     respond: quacking,
-    think: { frames: ['?', '? ?', '? ? ?', '? ? ?', ''].map(q => draw(SIT, { row: 1, col: 16, text: q })), every: 5 },
+    think: { frames: QUESTIONS.map(q => draw(SIT, { row: 1, col: 16, text: q })), every: 5 },
     wait: { frames: ['z', 'z Z', 'z Z z', ''].map(z => draw(NAP, { row: 1, col: 16, text: z })), every: 5 },
     tool: [
       { frames: [draw(beside(SIT, LAPTOP)), draw(beside(PECK, LAPTOP))], every: 2 },
@@ -121,7 +107,7 @@ export const duck: Animal = {
       walk,
     ],
   },
-  blink: frame => shut.get(frame) ?? frame,
+  blink,
   drama: {
     clips: [
       { frames: [draw(TA_DA, { row: 2, col: 18, text: 'QUACK!' })], every: 1 },

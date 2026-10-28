@@ -34,24 +34,33 @@ const ground = (rows: Frame): Row[] => [...Array<Row>(Math.max(0, HEIGHT - rows.
 // A number that looks random but is the same for the same `n` on every redraw.
 const scramble = (n: number, salt: number) => ((n + salt) * 2654435761) >>> 0
 
+// A clip and the tick it started on, so it always plays from its first frame.
+type Playing = { clip: Clip; from: number }
+
+// The frame, and the step, of what's playing at `tick`.
+const indexAt = ({ clip, from }: Playing, tick: number) => Math.floor((tick - from) / clip.every)
+
 // The drama under way at `tick`, if any. Within each period it starts at its own
 // spot and picks its own clip, so it never feels on a timer.
-const dramaAt = (animal: Animal, tick: number): Clip | undefined => {
+const dramaAt = (animal: Animal, tick: number): Playing | undefined => {
   if (!animal.drama) return undefined
   const { clips, period, ticks } = animal.drama
   const cycle = Math.floor(tick / period)
   const start = scramble(cycle, 1) % Math.max(1, period - ticks)
   const t = tick % period
-  return t >= start && t < start + ticks ? at(clips, scramble(cycle, 2) >>> 8) : undefined
+  return t >= start && t < start + ticks ? { clip: at(clips, scramble(cycle, 2) >>> 8), from: tick - t + start } : undefined
 }
 
-// The clip the animal plays: a drama, else the mood's; a tool call steps
+// What the animal plays: a drama, else the mood's clip; a tool call steps
 // through its phases every HOLD_TICKS.
-const clipAt = (animal: Animal, m: Memory, tick: number): Clip => {
+const playingAt = (animal: Animal, m: Memory, tick: number): Playing => {
   const drama = dramaAt(animal, tick)
   if (drama) return drama
-  if (m.mood === 'tool') return at(animal.poses.tool, Math.floor((tick - m.since) / HOLD_TICKS))
-  return animal.poses[m.mood]
+  if (m.mood === 'tool') {
+    const phase = Math.floor((tick - m.since) / HOLD_TICKS)
+    return { clip: at(animal.poses.tool, phase), from: m.since + phase * HOLD_TICKS }
+  }
+  return { clip: animal.poses[m.mood], from: m.since }
 }
 
 const initial = (props: Props): State => ({
@@ -71,9 +80,11 @@ const advance = (s: State, columns: number): State => {
     mood = wanted
     since = tick
   }
-  const moving = clipAt(animal, { mood, since, x, jumpUntil }, tick).moves ?? false
+  const playing = playingAt(animal, { mood, since, x, jumpUntil }, tick)
+  const { steps } = playing.clip
+  const step = steps ? at(steps, indexAt(playing, tick)) : 0
   const track = Math.max(1, columns - widthOfAnimal(animal))
-  const nextX = moving ? (x + 1) % track : Math.min(x, track - 1)
+  const nextX = step ? (x + step) % track : Math.min(x, track - 1)
   return { ...s, tick, memory: { mood, since, x: nextX, jumpUntil } }
 }
 
@@ -93,8 +104,8 @@ const Stage: ClientModule<Props, State> = (props, surface) => {
 
   const { tick, memory } = s
   const animal = animalNamed(s.props.animal)
-  const clip = clipAt(animal, memory, tick)
-  let frame = at(clip.frames, Math.floor(tick / clip.every))
+  const playing = playingAt(animal, memory, tick)
+  let frame = at(playing.clip.frames, indexAt(playing, tick))
   if (tick % BLINK_TICKS === BLINK_TICKS - 1) frame = animal.blink(frame)
   let rows = ground(frame)
   if (tick < memory.jumpUntil) rows = [...rows.slice(1), []]

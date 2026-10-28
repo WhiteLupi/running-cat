@@ -43,6 +43,27 @@ The Claude Code spinner had one job: spin. It did that job. Nobody loved it.
 
 **Where did the worm go?** Don't.
 
+## Not a bird person either?
+
+```
+/running-cat spider
+```
+
+<img src="assets/spider.svg" alt="running-cat spider: a pixel jumping spider leaps at a fly and misses, stares at you, types on a tiny laptop, dances, and paces" width="544">
+
+A jumping spider. Orange, fuzzy, eight eyes, all of them on your code. Prefer it goth? `/running-cat spider-black`.
+
+- 🪰 **Claude is answering** → the spider crouches, leaps, lands. At the top of the leap the fly darts off. It always darts off. The spider leaps again. This is not a bug, this is the whole relationship.
+- ❓ **Claude is thinking** → the spider turns to face you, six of its eight eyes on you, while question marks pile up. The other two are watching your back. You will feel seen. You will not enjoy it.
+- 💻 **A tool is running** → the spider types with one front leg, shuffles about, hunts the fly for a bit, comes back. One leg on the keyboard, seven on standby. It still types slower than you. Barely.
+- 🐾 **Waiting for the reply** → it shuffles a few steps back, a few steps forward, never leaving the spot. Pacing. We've all been there.
+- 💃 **Now and then** → it rears up and waves both front legs at you. In jumping spiders that means courtship. It's not you. It's the terminal.
+- ✨ **It doesn't blink.** Spiders can't. The glint in its big eyes goes out for a moment instead, which is somehow worse.
+
+**Is it venomous?** To flies.
+
+**Will it ever catch the fly?** Will you ever catch that bug?
+
 ## Scientifically proven benefits
 
 | Metric | Before | After |

@@ -1,13 +1,14 @@
 import { cat } from './cat'
 import { duck } from './duck'
 import { widthOf } from './pixels'
+import { spider, spiderBlack } from './spider'
 import type { Animal, Clip } from './types'
 
 export { HEIGHT } from './types'
 
 // Every animal the stage can draw; the first is the default. A new one is a file
 // beside these and a line here.
-export const ANIMALS: readonly Animal[] = [cat, duck]
+export const ANIMALS: readonly Animal[] = [cat, duck, spider, spiderBlack]
 
 export const clipsOf = (animal: Animal): Clip[] => {
   const { respond, think, wait, tool } = animal.poses
