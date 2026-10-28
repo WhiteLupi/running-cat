@@ -10,8 +10,12 @@ export const HEIGHT = 6
 // One frame of a sprite: rows top to bottom, at most HEIGHT of them.
 export type Frame = readonly Row[]
 
-// A looping run of frames, each held `every` ticks; `moves` walks it across the track.
-export type Clip = { frames: readonly Frame[]; every: number; moves?: boolean }
+// A looping run of frames, each held `every` ticks. `steps` walks it across the track:
+// columns a tick while each frame shows, looping like the frames.
+export type Clip = { frames: readonly Frame[]; every: number; steps?: readonly number[] }
+
+// Steps for a steady walk, a column a tick.
+export const WALK: readonly number[] = [1]
 
 export type Animal = {
   // The word `/running-cat <name>` takes.

@@ -1,7 +1,7 @@
 {
   "name": "running-cat",
-  "version": "0.4.0",
-  "description": "A kitten (or a duck) runs, thinks and types in place of the spinner, and names the tool in use",
+  "version": "0.5.0",
+  "description": "A kitten (or a duck, or a jumping spider) runs, thinks and types in place of the spinner, and names the tool in use",
   "author": { "name": "Katarzyna Walter" },
   "license": "MIT",
   "types": "./types/index.d.ts"
