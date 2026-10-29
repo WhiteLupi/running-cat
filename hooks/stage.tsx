@@ -1,10 +1,13 @@
 import type { ClientModule, RenderPropsOf } from 'claude-code'
 import { HEIGHT, animalNamed, widthOfAnimal } from './animals'
+import { FLY_EATEN } from './animals/props'
 import type { Animal, Clip, Frame, Row } from './animals/types'
 
 type Mode = RenderPropsOf['Spinner']['mode']
 type Mood = keyof Animal['poses']
-type Props = { mode: Mode; word: string; animal: string }
+// `fly`: the session's fly is still about; a stage drawn before there was a fly has none
+// and takes it as still about.
+type Props = { mode: Mode; word: string; animal: string; fly?: boolean }
 type Memory = { mood: Mood; since: number; x: number; jumpUntil: number }
 type State = { tick: number; props: Props; memory: Memory }
 
@@ -63,14 +66,21 @@ const playingAt = (animal: Animal, m: Memory, tick: number): Playing => {
   return { clip: animal.poses[m.mood], from: m.since }
 }
 
+// Once the fly is gone, a clip with a version for that plays it in its place.
+const withoutFly = (playing: Playing, fly: boolean | undefined): Playing => {
+  const { flyless } = playing.clip
+  return fly === false && flyless ? { ...playing, clip: flyless } : playing
+}
+
 const initial = (props: Props): State => ({
   tick: 0,
   props,
   memory: { mood: moodOf(props.mode), since: 0, x: 0, jumpUntil: 0 },
 })
 
-// One frame forward: the mood follows the mode (held at least HOLD_TICKS), the animal runs.
-const advance = (s: State, columns: number): State => {
+// One frame forward: the mood follows the mode (held at least HOLD_TICKS), the animal
+// runs. `eats`: the frame now up is the one the fly goes down at.
+const advance = (s: State, columns: number): { next: State; eats: boolean } => {
   const tick = s.tick + 1
   const animal = animalNamed(s.props.animal)
   const { x, jumpUntil } = s.memory
@@ -80,12 +90,16 @@ const advance = (s: State, columns: number): State => {
     mood = wanted
     since = tick
   }
-  const playing = playingAt(animal, { mood, since, x, jumpUntil }, tick)
-  const { steps } = playing.clip
-  const step = steps ? at(steps, indexAt(playing, tick)) : 0
+  const playing = withoutFly(playingAt(animal, { mood, since, x, jumpUntil }, tick), s.props.fly)
+  const index = indexAt(playing, tick)
+  const { steps, eats, frames } = playing.clip
+  const step = steps ? at(steps, index) : 0
   const track = Math.max(1, columns - widthOfAnimal(animal))
   const nextX = step ? (x + step) % track : Math.min(x, track - 1)
-  return { ...s, tick, memory: { mood, since, x: nextX, jumpUntil } }
+  return {
+    next: { ...s, tick, memory: { mood, since, x: nextX, jumpUntil } },
+    eats: s.props.fly !== false && eats !== undefined && at(frames, index) === frames[eats],
+  }
 }
 
 const Stage: ClientModule<Props, State> = (props, surface) => {
@@ -94,9 +108,13 @@ const Stage: ClientModule<Props, State> = (props, surface) => {
     s = initial(props)
     surface.setState(s)
     surface.every(FRAME_MS, () => {
-      if (surface.state) surface.setState(advance(surface.state, surface.columns))
+      if (!surface.state) return
+      const { next, eats } = advance(surface.state, surface.columns)
+      surface.setState(next)
+      // The hooks module keeps the fly for the session; tell it it's gone.
+      if (eats) surface.post(FLY_EATEN)
     })
-  } else if (props.mode !== s.props.mode || props.word !== s.props.word || props.animal !== s.props.animal) {
+  } else if ((['mode', 'word', 'animal', 'fly'] as const).some(key => props[key] !== s.props[key])) {
     const jumpUntil = props.word !== s.props.word ? s.tick + JUMP_TICKS : s.memory.jumpUntil
     s = { ...s, props, memory: { ...s.memory, jumpUntil } }
     surface.setState(s)
@@ -104,7 +122,7 @@ const Stage: ClientModule<Props, State> = (props, surface) => {
 
   const { tick, memory } = s
   const animal = animalNamed(s.props.animal)
-  const playing = playingAt(animal, memory, tick)
+  const playing = withoutFly(playingAt(animal, memory, tick), s.props.fly)
   let frame = at(playing.clip.frames, indexAt(playing, tick))
   if (tick % BLINK_TICKS === BLINK_TICKS - 1) frame = animal.blink(frame)
   let rows = ground(frame)
