@@ -11,8 +11,9 @@ export const HEIGHT = 6
 export type Frame = readonly Row[]
 
 // A looping run of frames, each held `every` ticks. `steps` walks it across the track:
-// columns a tick while each frame shows, looping like the frames.
-export type Clip = { frames: readonly Frame[]; every: number; steps?: readonly number[] }
+// columns a tick while each frame shows, looping like the frames. `eats`: the frame a
+// fly goes down at. `flyless`: what plays instead once the flies are gone, frame for frame.
+export type Clip = { frames: readonly Frame[]; every: number; steps?: readonly number[]; eats?: number; flyless?: Clip }
 
 // Steps for a steady walk, a column a tick.
 export const WALK: readonly number[] = [1]

@@ -1,13 +1,11 @@
 import { drawer, scene } from './pixels'
 import type { Grid, Palette } from './pixels'
-import { LAPTOP, LAPTOP_COLORS, QUESTIONS } from './props'
+import { FLY, FLY_COLORS, LAPTOP, LAPTOP_COLORS, QUESTIONS } from './props'
 import type { Animal, Clip } from './types'
 
 // Letters every spider shares; only the body colors differ.
 const PROPS = {
-  f: '#6A6A6A', // fly
-  r: '#E04040', // fly's eye
-  w: '#CFE8FF', // fly's wings
+  ...FLY_COLORS,
   J: '#3BD1C0', // fangs, the iridescent green
   j: '#1E9488', // fangs in shadow
   E: '#111111', // big front eyes
@@ -90,8 +88,6 @@ const raise = (tip: number) =>
     return cells.join('')
   })
 const DANCE = [raise(0), raise(2)]
-// Wings up, then out to the sides; the body holds still.
-const FLY = [['ww.ww', '.rff.'], ['.....', 'wrffw']]
 // Pixels off the floor it hovers at.
 const HOVER_LIFT = 6
 
@@ -118,10 +114,12 @@ const LEAP_COLUMNS = HOPPED.at(-1)!
 // spider moves.
 const FLY_AHEAD = 24
 const DART_AT = 9
-const HUNTING = HUNT.map(([grid, , lift], i) => {
-  const fly = { grid: FLY[i % 2]!, x: FLY_AHEAD + (i >= DART_AT ? LEAP_COLUMNS : 0) - HOPPED[i]!, lift: HOVER_LIFT }
-  return scene({ grid, x: 0, lift }, fly)
-})
+// Once the frog has had the fly, the spider leaps at nothing.
+const hunting = (withFly: boolean) =>
+  HUNT.map(([grid, , lift], i) => {
+    const fly = { grid: FLY[i % 2]!, x: FLY_AHEAD + (i >= DART_AT ? LEAP_COLUMNS : 0) - HOPPED[i]!, lift: HOVER_LIFT }
+    return scene({ grid, x: 0, lift }, ...(withFly ? [fly] : []))
+  })
 // The leg is drawn over the laptop's edge, so the laptop goes down first.
 const TYPING_AT_LAPTOP = TYPING.map(grid => scene({ grid: LAPTOP, x: 20 }, { grid, x: 0 }))
 
@@ -131,8 +129,10 @@ const SHUFFLE = [3, 2, 1, 0, 0, 1, 2, 3].map((x, i) => scene({ grid: [...BODY, .
 const build = (name: string, blurb: string, palette: Palette): Animal => {
   // Spiders don't blink; the glint in the big eyes goes out for a moment instead.
   const { draw, blink } = drawer(palette, grid => grid.map(row => row.replace(/W/g, 'E')))
-  const hunt: Clip = { frames: HUNTING.map(g => draw(g)), every: 1, steps: STEPS }
+  const huntAlone: Clip = { frames: hunting(false).map(g => draw(g)), every: 1, steps: STEPS }
+  const hunt: Clip = { frames: hunting(true).map(g => draw(g)), every: 1, steps: STEPS, flyless: huntAlone }
   const shuffle: Clip = { frames: SHUFFLE.map(g => draw(g)), every: 2 }
+  const typing: Clip = { frames: TYPING_AT_LAPTOP.map(g => draw(g)), every: 2 }
 
   return {
     name,
@@ -141,12 +141,7 @@ const build = (name: string, blurb: string, palette: Palette): Animal => {
       respond: hunt,
       think: { frames: QUESTIONS.map(q => draw(FRONT, { row: 1, col: 21, text: q })), every: 5 },
       wait: shuffle,
-      tool: [
-        { frames: TYPING_AT_LAPTOP.map(g => draw(g)), every: 2 },
-        shuffle,
-        hunt,
-        shuffle,
-      ],
+      tool: [typing, shuffle, hunt, shuffle],
     },
     blink,
     drama: { clips: [{ frames: DANCE.map(g => draw(g)), every: 2 }], ticks: 14, period: 100 },

@@ -1,9 +1,13 @@
 import { atom, read, update } from 'claude-code'
 import type { Register } from 'claude-code'
 import { ANIMALS, HEIGHT, animalNamed, findAnimal } from './animals'
+import { FLY_EATEN } from './animals/props'
 
 const tool = atom({ plugin: 'running-cat', key: 'tool' } as const, null)
 const picked = atom({ plugin: 'running-cat', key: 'animal' } as const, ANIMALS[0]!.name)
+// Flies about this session: once the frog has eaten one, it has eaten them all, and
+// the spider has none left to chase.
+const fly = atom({ plugin: 'running-cat', key: 'fly' } as const, true)
 // The store key that remembers your pick between sessions.
 const SAVED = 'animal'
 
@@ -57,6 +61,11 @@ export const register: Register = on => {
     return next(e)
   })
 
+  on('ui.message', async ($, e, next) => {
+    if (e.element === 'pet' && (e.data as typeof FLY_EATEN | null)?.eaten === FLY_EATEN.eaten) await update($, fly, () => false)
+    return next(e)
+  })
+
   on('ui.render', { component: 'Spinner' }, async ($, e, next) => {
     // The desktop gives the spinner one line; a taller animal gets cut to a stripe.
     if (e.surface !== 'terminal') return next(e)
@@ -64,12 +73,12 @@ export const register: Register = on => {
     const { Box, Client, Text } = $.ui.resolve(e)
     const { mode, word, message, suffix } = e.props
     const usingTool = mode === 'tool-use' || mode === 'tool-input'
-    const [name, animal] = await Promise.all([usingTool ? read($, tool) : null, read($, picked)])
+    const [name, animal, flyAbout] = await Promise.all([usingTool ? read($, tool) : null, read($, picked), read($, fly)])
     const label = `${name ? `${name} · ` : ''}${message ?? word}${suffix}`
 
     return (
       <Box flexDirection="column" width="100%">
-        <Client key="pet" module="./stage.tsx" props={{ mode, word, animal }} width="100%" height={HEIGHT} />
+        <Client key="pet" module="./stage.tsx" props={{ mode, word, animal, fly: flyAbout }} width="100%" height={HEIGHT} />
         <Text dimColor>{label}</Text>
       </Box>
     )

@@ -62,7 +62,29 @@ A jumping spider. Orange, fuzzy, eight eyes, all of them on your code. Prefer it
 
 **Is it venomous?** To flies.
 
-**Will it ever catch the fly?** Will you ever catch that bug?
+**Will it ever catch the fly?** Will you ever catch that bug? Someone else might, though. Read on.
+
+## Not into legs at all?
+
+```
+/running-cat frog
+```
+
+<img src="assets/frog.svg" alt="running-cat frog: a pixel frog flicks its tongue at a fly and swallows it, ponders face on, types with its tongue, hops, lies in the pond with only its eyes up, and croaks" width="544">
+
+A frog. Green, gold-eyed, patient. It does not leap at the fly. It doesn't need to.
+
+- 🪰 **Claude is answering** → the frog sits. A fly buzzes. The tongue goes out, the fly comes back on it, a wing sticks out of the frog's mouth for a moment, gulp. Then it hops on, and there's another fly. There is always another fly.
+- 🕷️ **Yes, those flies.** Once the frog has eaten one, it has eaten every fly around. Switch to the spider in the same session and watch it leap at nothing. It will keep leaping. It does not know. Nobody tell it. A new session brings the flies back.
+- ❓ **Claude is thinking** → the frog turns to face you, mouth a flat line, while question marks pile up. It has the expression of someone who has just been asked to estimate a ticket.
+- 💻 **A tool is running** → the frog types with its tongue. One key, back in, another key. The keyboard will need a wipe. Then it hops about, hunts, hops back.
+- 🌊 **Waiting for the reply** → it slips into the pond until only its eyes and the top of its head are above the water. It is watching you. It is always watching you. The ripples drift by.
+- 🐸 **Now and then** → it turns to you, blows up the sac under its chin to the size of its head and goes *RIBBIT!* It is not a warning. It is not a greeting. It is a frog.
+- 😌 **It blinks.** Green lids, slowly, like it has all the time in the world. It does. It's a frog.
+
+**Did it really eat the spider's flies?** All of them.
+
+**Will the flies come back?** Next session. The frog will be waiting.
 
 ## Scientifically proven benefits
 

@@ -51,18 +51,18 @@ export const beside = (left: Grid, right: Grid, gap = 0): Grid => {
 }
 
 // Grids laid on one stage-high canvas: each at column `x`, `lift` pixels off the
-// floor, later ones drawn over earlier ones.
+// floor (below it when negative, cut off there), later ones drawn over earlier ones.
 export type Placed = { grid: Grid; x: number; lift?: number }
 export const scene = (...placed: Placed[]): Grid => {
   const height = HEIGHT * 2
   const width = Math.max(...placed.map(p => p.x + Math.max(...p.grid.map(row => row.length))))
   const rows = Array.from({ length: height }, () => [...'.'.repeat(width)])
   for (const { grid, x, lift = 0 } of placed)
-    grid.forEach((row, i) =>
-      [...row].forEach((pixel, j) => {
-        if (pixel !== '.') rows[height - lift - grid.length + i]![x + j] = pixel
-      }),
-    )
+    grid.forEach((row, i) => {
+      const line = rows[height - lift - grid.length + i]
+      if (!line) return
+      for (let j = 0; j < row.length; j++) if (row[j] !== '.') line[x + j] = row[j]!
+    })
   return rows.map(row => row.join(''))
 }
 
